@@ -23,6 +23,8 @@ urlpatterns = [
     path('', include('vlog_app.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('api-auth/', include('rest_framework.urls')),
+
 ]
 
 if settings.DEBUG :

@@ -6,6 +6,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
+from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView
+from .serializers import *
 
 
 class UserLoginView(LoginView):
@@ -136,3 +138,10 @@ class PostEditView(LoginRequiredMixin, UpdateView):
         return context
 
 
+class PostsListAPIView(ListAPIView):
+
+    serializer_class = PostSerializers
+    queryset = Post.objects.filter(
+        is_draft=False,
+        is_delete=False
+    )
