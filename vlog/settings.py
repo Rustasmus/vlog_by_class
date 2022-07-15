@@ -158,5 +158,5 @@ DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
-database config
+# database config
 DATABASES['default'] = dj_database_url.config(conn_max_age=500)
