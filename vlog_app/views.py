@@ -1,13 +1,15 @@
 from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from .models import *
 from .forms import *
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
-from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateAPIView
+from rest_framework.viewsets import ModelViewSet
 from .serializers import *
+
 
 
 class UserLoginView(LoginView):
@@ -145,3 +147,36 @@ class PostsListAPIView(ListAPIView):
         is_draft=False,
         is_delete=False
     )
+
+
+class MyProfileApiView(ListAPIView):
+
+    serializer_class = MyProfilePostSerializers
+
+    def get_queryset(self):
+        return Post.objects.filter(
+            user_id__id=self.request.user.id,
+            is_delete=False,
+        )
+
+
+class PostCreateApiView(CreateAPIView):
+
+    serializer_class = CreatePostSerializers
+
+    def perform_create(self, serializer):
+        user = get_object_or_404(User, pk=self.request.user.id)
+        serializer.save(user_id=user)
+
+
+class PostUpdateApiView(UpdateView):
+
+    serializer_class = PostUpdateSerializers
+    queryset = Post.objects.all()
+
+
+class PostApiView(ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializers
+
+
