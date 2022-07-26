@@ -35,3 +35,11 @@ class PostUpdateSerializers(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ('title', 'img', 'description', 'is_draft', 'is_delete')
+
+
+class PostDetailSerializers(serializers.ModelSerializer):
+    img = serializers.ImageField(required=False, max_length=None, allow_empty_file=True, use_url=True)
+    class Meta:
+        model = Post
+        fields = ('title', 'img', 'description', 'create_date', 'update_date', 'user_id')
+        

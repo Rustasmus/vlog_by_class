@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-import dj_database_url
 import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-s7o6kk5vgsidi@86q4&8%0hj+b4ksi!3%)hr7lgzs0p9*za#qo'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -46,6 +46,12 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'rest_framework',
+
+    # third party package for user registration and authentication endpoints
+    'djoser',
+
+    # JWT authentication backend library
+    'rest_framework_simplejwt'
 ]
 
 MIDDLEWARE = [
@@ -141,6 +147,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Login config
 LOGIN_REDIRECT_URL = "my-profile"
 LOGOUT_REDIRECT_URL = "/"
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
 
 # Template config
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'

@@ -1,15 +1,13 @@
 from django.views.generic import ListView, CreateView, DetailView, UpdateView
-from .models import *
 from .forms import *
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
-from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView
 from rest_framework.viewsets import ModelViewSet
 from .serializers import *
-
 
 
 class UserLoginView(LoginView):
@@ -179,4 +177,14 @@ class PostApiView(ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializers
 
+
+class PostDetailApiView(ListAPIView):
+    
+    serializer_class = PostDetailSerializers
+    
+    queryset = Post.objects.filter(
+        is_draft=False,
+        is_delete=False
+    )
+    
 

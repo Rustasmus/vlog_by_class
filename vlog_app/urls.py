@@ -8,6 +8,7 @@ router.register(r'post', PostApiView)
 urlpatterns = [
     path('api/v1/update-post/<int:pk>', PostUpdateApiView.as_view(), name='post-update-api'),
     path('api/v1/create-post/', PostCreateApiView.as_view(), name='post-create-api'),
+    path('api/v1/detail-post/<int:pk>', PostDetailApiView.as_view(), name='post-detail-api'),
     path('api/v1/my-profile/', MyProfileApiView.as_view(), name='my-profile-api'),
     path('api/v1/posts/', PostsListAPIView.as_view(), name='posts-list-api'),
     path('', PostsListView.as_view(), name='index'),

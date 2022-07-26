@@ -23,8 +23,9 @@ urlpatterns = [
     path('', include('vlog_app.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('api-auth/', include('rest_framework.urls')),
-
+    # path('api-auth/', include('rest_framework.urls')),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
 ]
 
 if settings.DEBUG :
