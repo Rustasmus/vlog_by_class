@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = 'django-insecure-s7o6kk5vgsidi@86q4&8%0hj+b4ksi!3%)hr7lgzs0p9*za#qo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -171,4 +171,4 @@ DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # database config
-DATABASES['default'] = dj_database_url.config(conn_max_age=500)
+# DATABASES['default'] = dj_database_url.config(conn_max_age=500)
