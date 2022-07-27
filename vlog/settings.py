@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-s7o6kk5vgsidi@86q4&8%0hj+b4ksi!3%)hr7lgzs0p9*za#qo'
+SECRET_KEY = "env"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -52,7 +52,10 @@ INSTALLED_APPS = [
     'djoser',
 
     # JWT authentication backend library
-    'rest_framework_simplejwt'
+    'rest_framework_simplejwt',
+    
+    # required for serving swagger ui's css/js files
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [

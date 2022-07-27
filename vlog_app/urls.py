@@ -2,8 +2,13 @@ from django.urls import path
 from .views import *
 from rest_framework.routers import SimpleRouter
 
+
+
 router = SimpleRouter()
 router.register(r'post', PostApiView)
+router.register('api/v1/contact', ContactModelViewSet)
+router.register('api/v1/siteinfo', SiteInfoModelViewSet)
+
 
 urlpatterns = [
     path('api/v1/update-post/<int:pk>', PostUpdateApiView.as_view(), name='post-update-api'),

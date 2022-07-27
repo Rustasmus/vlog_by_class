@@ -43,3 +43,16 @@ class PostDetailSerializers(serializers.ModelSerializer):
         model = Post
         fields = ('title', 'img', 'description', 'create_date', 'update_date', 'user_id')
         
+class ContactSerializers(serializers.ModelSerializer):
+    
+    class Meta:
+        
+        model=Contact
+        fields='__all__'
+        
+class SiteInfoSerializers(serializers.ModelSerializer):
+    
+    class Meta:
+        
+        model=SiteInfo
+        fields='__all__'

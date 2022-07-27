@@ -188,3 +188,12 @@ class PostDetailApiView(ListAPIView):
     )
     
 
+class ContactModelViewSet(ModelViewSet):
+    
+    serializer_class=ContactSerializers
+    queryset=Contact.objects.all()
+    
+class SiteInfoModelViewSet(ModelViewSet):
+    
+    serializer_class=SiteInfoSerializers
+    queryset=SiteInfo.objects.all()
